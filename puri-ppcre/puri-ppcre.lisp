@@ -22,7 +22,7 @@
 ;; Lesser General Public License for more details.
 ;;
 
-(in-package #:puri)
+(in-package #:b9-puri)
 
 (eval-when (:compile-toplevel) (declaim (optimize (speed 3))))
 
@@ -53,7 +53,7 @@
 ;; patch parse-uri to allow class to be designated by the scheme
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
-  (export '(uri-user uri-password uri-userinfo *class.uri* make-uri) :puri))
+  (export '(uri-user uri-password uri-userinfo *class.uri* make-uri) :b9-puri))
 
 (fmakunbound 'parse-uri)
 (fmakunbound 'parse-uri-string)
@@ -346,7 +346,7 @@
 
 (defun parse-iri-string (string &key (pchar-p #'ipchar-p) (fchar-p #'ifchar-p) (qchar-p #'iqchar-p))
   (declare (dynamic-extent pchar-p fchar-p qchar-p))
-  (puri::parse-uri-string string
+  (b9-puri::parse-uri-string string
                           :pchar-p pchar-p :fchar-p fchar-p :qchar-p qchar-p))
 
 (defun parse-uri-string (string &key (pchar-p #'pchar-p) (fchar-p #'fchar-p) (qchar-p #'qchar-p))
@@ -446,8 +446,8 @@
 ( (uri "amqp://guest:test@test.com:23/asdf/qwer.txt")
   (let ((string (format nil "http://www.w3.org/2001/sw/DataAccess/tests/data/i18n/normalization.ttl#resum~c"
                         (code-char 769))))
-    (list (nth-value 1 (ignore-errors (puri:parse-uri string)))
-          (puri::parse-uri string :parse-uri-string 'puri::parse-iri-string)))
+    (list (nth-value 1 (ignore-errors (b9-puri:parse-uri string)))
+          (b9-puri::parse-uri string :parse-uri-string 'b9-puri::parse-iri-string)))
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

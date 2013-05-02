@@ -7,7 +7,7 @@
   :maintainer "james.anderson@setf.de"
   :licence "GNU Lesser General Public License"
   :description "additions to the Portable Universal Resource Indentifier Library"
-  :depends-on (:cl-ppcre :puri)
+  :depends-on (:cl-ppcre :b9-puri)
   :components ((:file "puri-ppcre"))
   :long-description
   "This extension to PURI replaces the URI parser with an implementation in terms of regular expressions

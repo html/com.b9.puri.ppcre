@@ -24,9 +24,9 @@
 ;;
 ;; $Id$
 
-(defpackage #:puri
+(defpackage #:b9-puri
   (:use #:cl)
-  #-allegro (:nicknames #:net.uri)
+  ;#-allegro (:nicknames #:net.uri)
   (:export
    #:uri                                ; the type and a function
    #:uri-p
@@ -61,7 +61,7 @@
    #:uri-parse-error ;; Added by KMR
    ))
 
-(in-package #:puri)
+(in-package #:b9-puri)
 
 (eval-when (:compile-toplevel) (declaim (optimize (speed 3))))
 
@@ -1176,7 +1176,7 @@ Executes the forms once for each uri with var bound to the current uri"
           "#u takes a string or list argument: ~s" arg)))))
 
 
-(set-dispatch-macro-character #\# #\u #'puri::sharp-u)
+(set-dispatch-macro-character #\# #\u #'b9-puri::sharp-u)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

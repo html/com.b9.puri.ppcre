@@ -23,8 +23,8 @@
 ;; $Id$
 
 
-(defpackage #:puri-tests (:use #:puri #:cl #:ptester))
-(in-package #:puri-tests)
+(defpackage #:b9-puri-tests (:use #:b9-puri #:cl #:ptester))
+(in-package #:b9-puri-tests)
 
 (unintern-uri t)
 
@@ -379,47 +379,47 @@
 
     (push
      #+(or) ;; rfc3986 syntax precludes this
-     '(let ((puri::*strict-parse* nil))
+     '(let ((b9-puri::*strict-parse* nil))
        (test-no-error
-        (puri:parse-uri
+        (b9-puri:parse-uri
          "http://foo.com/bar?a=zip|zop")))
      `(test-error (parse-uri "http://foo.com/bar?a=zip|zop") :condition-type 'uri-parse-error)
      res)
     (push
      '(test-error
-       (puri:parse-uri "http://foo.com/bar?a=zip|zop")
+       (b9-puri:parse-uri "http://foo.com/bar?a=zip|zop")
        :condition-type 'uri-parse-error)
      res)
 
     (push
-     '(let ((puri::*strict-parse* nil))
+     '(let ((b9-puri::*strict-parse* nil))
        (test-no-error
-        (puri:parse-uri
+        (b9-puri:parse-uri
          "http://arc3.msn.com/ADSAdClient31.dll?GetAd?PG=NBCSBU?SC=D2?AN=1.0586041")))
      res)
     (push
      #+() ; rfc3986 permits the '?' in th query
      '(test-error
-       (puri:parse-uri
+       (b9-puri:parse-uri
         "http://arc3.msn.com/ADSAdClient31.dll?GetAd?PG=NBCSBU?SC=D2?AN=1.0586041")
        :condition-type 'uri-parse-error)
      '(test
         "http://arc3.msn.com/ADSAdClient31.dll?GetAd?PG=NBCSBU?SC=D2?AN=1.0586041"
          (format nil "~a"
-                 (puri:parse-uri
+                 (b9-puri:parse-uri
                   "http://arc3.msn.com/ADSAdClient31.dll?GetAd?PG=NBCSBU?SC=D2?AN=1.0586041"))
         :test 'string=)
      res)
 
     (push
-     '(let ((puri::*strict-parse* nil))
+     '(let ((b9-puri::*strict-parse* nil))
        (test-no-error
-        (puri:parse-uri
+        (b9-puri:parse-uri
          "http://scbc.booksonline.com/cgi-bin/ndCGI.exe/Develop/pagClubHome.hrfTIOLI_onWebEvent(hrfTIOLI)?selGetClubOffer.TB_OFFER_ID_OFFER=344879%2e0&selGetClubOffer.TB_OFFER_ID_ITEM=34487%2e0&selGetClubOffer.TB_OFFER_ID_OFFER=344879%2e0&^CSpCommand.currRowNumber=5&hrfTIOLI=The+Visual+Basic+6+Programmer%27s+Toolkit&SPIDERSESSION=%3f%3f%3f%3f%3f%5f%3f%3f%3f%40%5b%3f%3f%3f%3fBOs%5cH%3f%3f%3f%3f%3f%3f%3f%3f%3fMMpXO%5f%40JG%7d%40%5c%5f%3f%3f%3fECK%5dt%3fLDT%3fTBD%3fDDTxPEToBS%40%5f%5dBDgXVoKBSDs%7cDT%3fK%3fd%3fTIb%7ceHbkeMfh%60LRpO%5cact%5eUC%7bMu%5fyWUGzLUhP%5ebpdWRka%5dFO%3f%5dBopW%3f%40HMrxbMRd%60LOpuMVga%3fv%3fTS%3fpODT%40O&%5euniqueValue=977933764843")))
      res)
     (push
      '(test-error
-       (puri:parse-uri
+       (b9-puri:parse-uri
         "http://scbc.booksonline.com/cgi-bin/ndCGI.exe/Develop/pagClubHome.hrfTIOLI_onWebEvent(hrfTIOLI)?selGetClubOffer.TB_OFFER_ID_OFFER=344879%2e0&selGetClubOffer.TB_OFFER_ID_ITEM=34487%2e0&selGetClubOffer.TB_OFFER_ID_OFFER=344879%2e0&^CSpCommand.currRowNumber=5&hrfTIOLI=The+Visual+Basic+6+Programmer%27s+Toolkit&SPIDERSESSION=%3f%3f%3f%3f%3f%5f%3f%3f%3f%40%5b%3f%3f%3f%3fBOs%5cH%3f%3f%3f%3f%3f%3f%3f%3f%3fMMpXO%5f%40JG%7d%40%5c%5f%3f%3f%3fECK%5dt%3fLDT%3fTBD%3fDDTxPEToBS%40%5f%5dBDgXVoKBSDs%7cDT%3fK%3fd%3fTIb%7ceHbkeMfh%60LRpO%5cact%5eUC%7bMu%5fyWUGzLUhP%5ebpdWRka%5dFO%3f%5dBopW%3f%40HMrxbMRd%60LOpuMVga%3fv%3fTS%3fpODT%40O&%5euniqueValue=977933764843")
        :condition-type 'uri-parse-error)
      res)
@@ -428,7 +428,7 @@
 
 (defun do-tests ()
   (let ((*break-on-test-failures* t))
-    (with-tests (:name "puri")
+    (with-tests (:name "b9-puri")
       (gen-test-forms)))
   t)
 
